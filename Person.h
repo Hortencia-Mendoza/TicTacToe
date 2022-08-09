@@ -6,9 +6,9 @@
 class Person
 {
 public:
-	Person(std::string name_input);
-	std::string get_name();
-	int get_score();
+	Person(const std::string& name_input);
+	std::string get_name() const;
+	int get_score() const;
 	void score_update();
 
 private:

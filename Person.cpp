@@ -2,15 +2,15 @@
 
 //Constructs Class Person; assigns member fields name and score
 
-Person::Person(std::string name_input): name(name_input), score(0){
-	
+Person::Person(const std::string& name_input) : name(name_input), score(0) {
+
 }
 
 //retrieves player names from Class Person
 //@param: implicit parameter is Player of Type Class Person
 //@return: player name
 
-std::string Person::get_name()
+std::string Person::get_name() const
 {
 	return name;
 }
@@ -19,7 +19,7 @@ std::string Person::get_name()
 //@param: implicit parameter is Player of Type Class Person
 //@return: player score
 
-int Person::get_score()
+int Person::get_score() const
 {
 	return score;
 }

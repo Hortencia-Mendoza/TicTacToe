@@ -3,7 +3,7 @@
 
 //Contructs Class Game; assigns member field pointers to Type Class Person player_1 and player_2
 
-Game::Game(Person* p1, Person* p2, int num_games): player_1(p1), player_2(p2), current(p1),
+Game::Game(Person* const p1, Person* const p2, const int num_games) : player_1(p1), player_2(p2), current(p1),
 total_games(num_games), games_played(0), game_over(false) {
 
 }
@@ -32,7 +32,7 @@ void Game::Lets_Play() {
 		this->update_board('X', row, col);
 		this->print_board();
 
-		if(!(this->winner('X'))){
+		if (!(this->winner('X'))) {
 			this->end_turn();
 		}
 		else {
@@ -54,7 +54,7 @@ void Game::Lets_Play() {
 			std::cout << player_2->get_name() << " (O) Mark Location: ";
 			std::cin >> row >> col;
 		} while (!(this->playable(row, col)));
-		
+
 		this->update_board('O', row, col);
 		this->print_board();
 
@@ -77,7 +77,7 @@ void Game::Lets_Play() {
 //@param: implicit parameter is TicTacToe of Type Class Game
 //@return: none
 
-void Game::print_board() {
+void Game::print_board() const{
 
 	std::cout << "     1       2       3   \n"
 		"         |       |       \n"
@@ -95,7 +95,7 @@ void Game::print_board() {
 //@param: explicit parameter is row and column location player is attempting to occupy
 //@return: true if location playable; false o/w
 
-bool Game::playable(int i, int j) {
+bool Game::playable(const int i, const int j) const{
 
 	if (mm[i - 1][j - 1] == ' ') {
 		return true;
@@ -109,7 +109,7 @@ bool Game::playable(int i, int j) {
 //@param: explicit parameter is player's specific mark (either 'X' or 'O'), and row/column player wishes to occupy
 //@return: none
 
-void Game::update_board(char mark, int i, int j) {
+void Game::update_board(const char mark, const int i, const int j) {
 
 	mm[i - 1][j - 1] = mark;
 }
@@ -118,7 +118,7 @@ void Game::update_board(char mark, int i, int j) {
 //@param: specific player's mark being checked across all rows/columns/diagonals
 //@return: true if player's mark found across a row, colummn or diagonal; false o/w
 
-bool Game::winner(char mrk)
+bool Game::winner(const char mrk) const
 {
 	//checks rows
 	if (mrk == mm[0][0] && mm[0][0] == mm[0][1] && mm[0][1] == mm[0][2]) {
@@ -207,7 +207,7 @@ void Game::play_again() {
 //@param: implicit parameter is TicTacToe of Type Class Game
 //@return: name(s) of tournament winner(s)
 
-std::string Game::tour_winner() {
+std::string Game::tour_winner() const{
 
 	if (player_1->get_score() < player_2->get_score()) {
 		return player_2->get_name();
@@ -223,7 +223,7 @@ std::string Game::tour_winner() {
 //@param: implicit parameter is TicTacToe of Type Class Game
 //@return: false if there is an empty space; true o/w
 
-bool Game::Game::boardfull() {
+bool Game::Game::boardfull() const {
 
 	for (int i = 0; i < 3; i++) {
 		for (int j = 0; j < 3; j++) {

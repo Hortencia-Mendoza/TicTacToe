@@ -6,18 +6,18 @@
 class Game {
 
 public:
-	Game(Person* p1, Person* p2, int num_games);
+	Game(Person* const p1, Person* const p2, const int num_games);
 	void Lets_Play();
-	void print_board();
-	bool playable(int i, int j);
-	void update_board(char mark, int i, int j);
-	bool winner(char mrk);
+	void print_board() const;
+	bool playable(const int i, const int j) const;
+	void update_board(const char mark, const int i, const int j);
+	bool winner(const char mrk) const;
 	void end_turn();
 	void end_round();
 	void clear_board();
 	void play_again();
-	std::string tour_winner();
-	bool boardfull();
+	std::string tour_winner() const;
+	bool boardfull() const;
 
 private:
 	Person* player_1 = nullptr;
